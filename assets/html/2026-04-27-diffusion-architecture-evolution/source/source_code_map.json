@@ -264,22 +264,22 @@
     "key_methods": ["tokenize", "encode"]
   },
   "UniDiffuserModel": {
-    "file": "diffusers/models/unets/unet_unidiffuser.py",
-    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/unets/unet_unidiffuser.py",
-    "description": "UniDiffuser unified transformer model for multi-modal generation",
+    "file": "diffusers/models/uvit_2d.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/uvit_2d.py",
+    "description": "UniDiffuser U-ViT (Unified Vision Transformer) for multi-modal diffusion (text, image, joint generation)",
     "key_methods": ["forward", "__init__"]
   },
   "UniDiffuserTextDecoder": {
-    "file": "diffusers/models/transformers/unidiffuser_text_decoder.py",
-    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/unidiffuser_text_decoder.py",
-    "description": "UniDiffuser text decoder for image-to-text generation",
-    "key_methods": ["forward"]
+    "file": "diffusers/models/unidiffuser_text_decoder.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/unidiffuser_text_decoder.py",
+    "description": "UniDiffuser GPT-2 based text decoder for image-to-text generation",
+    "key_methods": ["forward", "generate"]
   },
   "UniDiffuserPipeline": {
     "file": "diffusers/pipelines/unidiffuser/pipeline_unidiffuser.py",
     "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/unidiffuser/pipeline_unidiffuser.py",
-    "description": "UniDiffuser unified pipeline for text-to-image and image-to-text generation",
-    "key_methods": ["__call__"]
+    "description": "UniDiffuser unified pipeline (text2img, img2text, joint, img, text, img_var, text_var modes)",
+    "key_methods": ["__call__", "text2img", "img2text", "joint"]
   },
   "PaellaVQModel": {
     "file": "diffusers/models/vq_model.py",
@@ -334,6 +334,79 @@
     "github_url": "https://github.com/huggingface/transformers/blob/main/src/transformers/tokenization_utils_fast.py",
     "description": "Fast tokenizer base class using Rust backend",
     "key_methods": ["tokenize", "encode"]
+  },
+  "Lumina2Pipeline": {
+    "file": "diffusers/pipelines/lumina2/pipeline_lumina2.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/lumina2/pipeline_lumina2.py",
+    "description": "Lumina-Image-2.0 text-to-image pipeline",
+    "key_methods": ["__call__"]
+  },
+  "Lumina2Transformer2DModel": {
+    "file": "diffusers/models/transformers/transformer_lumina2.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_lumina2.py",
+    "description": "Lumina-Image-2.0 Transformer model",
+    "key_methods": ["forward", "__init__"]
+  },
+  "HiDreamImagePipeline": {
+    "file": "diffusers/pipelines/hidream_image/pipeline_hidream_image.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py",
+    "description": "HiDream-I1 text-to-image pipeline",
+    "key_methods": ["__call__"]
+  },
+  "HiDreamImageTransformer2DModel": {
+    "file": "diffusers/models/transformers/transformer_hidream_image.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_hidream_image.py",
+    "description": "HiDream-I1 Transformer model",
+    "key_methods": ["forward", "__init__"]
+  },
+  "KandinskyPipeline": {
+    "file": "diffusers/pipelines/kandinsky/pipeline_kandinsky.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/kandinsky/pipeline_kandinsky.py",
+    "description": "Kandinsky 2.1 text-to-image pipeline",
+    "key_methods": ["__call__"]
+  },
+  "Kandinsky3Pipeline": {
+    "file": "diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/kandinsky3/pipeline_kandinsky3.py",
+    "description": "Kandinsky 3 text-to-image pipeline",
+    "key_methods": ["__call__"]
+  },
+  "Kandinsky3UNet": {
+    "file": "diffusers/models/unets/unet_kandinsky3.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/unets/unet_kandinsky3.py",
+    "description": "Kandinsky 3 UNet model",
+    "key_methods": ["forward", "__init__"]
+  },
+  "VQModel": {
+    "file": "diffusers/models/vq_model.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/vq_model.py",
+    "description": "Vector Quantized VAE model used in Kandinsky models",
+    "key_methods": ["encode", "decode"]
+  },
+  "MultilingualCLIP": {
+    "file": "kandinsky/models/text_encoders.py",
+    "github_url": "https://github.com/ai-forever/Kandinsky-2/blob/main/kandinsky2/model/text_encoders.py",
+    "description": "Multilingual CLIP text encoder from kandinsky library (Kandinsky 2.x)",
+    "key_methods": ["forward"],
+    "note": "External library: requires kandinsky2-gen package"
+  },
+  "XLMRobertaTokenizerFast": {
+    "file": "transformers/models/xlm_roberta/tokenization_xlm_roberta_fast.py",
+    "github_url": "https://github.com/huggingface/transformers/blob/main/src/transformers/models/xlm_roberta/tokenization_xlm_roberta_fast.py",
+    "description": "Fast XLM-RoBERTa tokenizer for multilingual text processing",
+    "key_methods": ["tokenize", "encode"]
+  },
+  "HiDreamPipeline": {
+    "file": "diffusers/pipelines/hidream/pipeline_hidream.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/hidream/pipeline_hidream.py",
+    "description": "HiDream text-to-image pipeline",
+    "key_methods": ["__call__"]
+  },
+  "HiDreamTransformer2DModel": {
+    "file": "diffusers/models/transformers/transformer_hidream.py",
+    "github_url": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_hidream_image.py",
+    "description": "HiDream Transformer model with MoE architecture",
+    "key_methods": ["forward", "__init__"]
   }
 }
 

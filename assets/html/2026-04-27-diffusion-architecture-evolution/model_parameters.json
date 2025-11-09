@@ -116,5 +116,57 @@
       "transformer": 3.5,
       "vae": 0.5
     }
+  },
+  "Alpha-VLLM/Lumina-Image-2.0": {
+    "total_params": 5.31,
+    "components": {
+      "text_encoder": 2.61434,
+      "transformer": 2.60977,
+      "vae": 0.08382
+    }
+  },
+  "Efficient-Large-Model/SANA1.5_1.6B_1024px_diffusers": {
+    "total_params": 4.53,
+    "components": {
+      "text_encoder": 2.61434,
+      "transformer": 1.60464,
+      "vae": 0.31225
+    }
+  },
+  "HiDream-ai/HiDream-I1-Full": {
+    "total_params": 22.77,
+    "components": {
+      "text_encoder": 0.12378,
+      "text_encoder_2": 0.69484,
+      "text_encoder_3": 4.76231,
+      "transformer": 17.10573,
+      "vae": 0.08382
+    }
+  },
+  "stabilityai/stable-diffusion-3.5-large": {
+    "total_params": 13.72,
+    "components": {
+      "text_encoder": 0.12365,
+      "text_encoder_2": 0.69466,
+      "text_encoder_3": 4.76231,
+      "transformer": 8.05663,
+      "vae": 0.08382
+    }
+  },
+  "kandinsky-community/kandinsky-2-1": {
+    "total_params": 1.86,
+    "components": {
+      "text_encoder": 0.56068,
+      "unet": 1.22866,
+      "movq": 0.06783
+    }
+  },
+  "kandinsky-community/Kandinsky-3": {
+    "total_params": 12.05,
+    "components": {
+      "text_encoder": 8.7218,
+      "unet": 3.05535,
+      "movq": 0.27067
+    }
   }
 }
