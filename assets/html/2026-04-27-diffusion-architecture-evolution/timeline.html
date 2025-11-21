@@ -214,9 +214,20 @@
             { name: "Kandinsky 3", date: "2023-12-11", type: "unet" },
             { name: "Stable Cascade", date: "2024-02-07", type: "unet" },
             // Non-text conditioned DiT models
-            { name: "DiT", date: "2023-03-17", type: "non-text" },
-            { name: "U-ViT", date: "2023-06-22", type: "non-text" },
-            { name: "U-DiT", date: "2025-05-30", type: "non-text" },
+            { name: "U-ViT", date: "2022-09-25", type: "non-text" },
+            { name: "DiT", date: "2022-12-19", type: "non-text" },
+            { name: "SiD", date: "2023-01-26", type: "non-text" },
+            { name: "MDT", date: "2023-03-25", type: "non-text" },
+            { name: "16x16 Patches", date: "2024-10-12", type: "non-text" },
+            { name: "SiT", date: "2024-01-16", type: "non-text" },
+            { name: "MDTv2", date: "2024-02-21", type: "non-text" },
+            { name: "FiT", date: "2024-02-19", type: "non-text" },
+            { name: "U-DiT", date: "2024-05-05", type: "non-text" },
+            { name: "DiG", date: "2024-05-28", type: "non-text" },
+            { name: "REPA", date: "2024-10-09", type: "non-text" },
+            { name: "SiD2", date: "2024-10-15", type: "non-text" },
+            { name: "REG", date: "2025-07-02", type: "non-text" },
+            { name: "JiT", date: "2025-11-01", type: "non-text" },
             // DiT text-to-image models
             { name: "PixArt-α", date: "2023-10-06", type: "dit" },
             { name: "Lumina-T2I", date: "2024-04-01", type: "dit" },
@@ -235,16 +246,25 @@
             { name: "Qwen-Image", date: "2025-08-04", type: "dit" }
         ];
 
-        const sortedModels = models.map(model => ({
-            ...model,
-            displayDate: model.date === "TBD" ? "TBD" : new Date(model.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
-            year: model.date === "TBD" ? 9999 : new Date(model.date).getFullYear()
-        })).sort((a, b) => {
-            if (a.date === "TBD" && b.date === "TBD") return 0;
-            if (a.date === "TBD") return 1;
-            if (b.date === "TBD") return -1;
-            return new Date(a.date) - new Date(b.date);
-        });
+        const sortedModels = models.map(model => {
+            if (model.date === "TBD") {
+                return {
+                    ...model,
+                    displayDate: "TBD",
+                    year: 9999
+                };
+            }
+
+            const releaseDate = new Date(model.date);
+            const releaseYear = Number.isNaN(releaseDate.getTime()) ? null : releaseDate.getUTCFullYear();
+            const safeYear = releaseYear ?? 9999;
+
+            return {
+                ...model,
+                displayDate: safeYear === 9999 ? "TBD" : safeYear.toString(),
+                year: safeYear
+            };
+        }).sort((a, b) => a.year - b.year);
 
         function createTimeline() {
             const svg = document.getElementById('timeline-svg');
@@ -376,7 +396,7 @@
             
             tooltip.innerHTML = `
                 <div class="tooltip-row"><span class="tooltip-label">Model:</span> ${model.name}</div>
-                <div class="tooltip-row"><span class="tooltip-label">Release:</span> ${model.displayDate}</div>
+                <div class="tooltip-row"><span class="tooltip-label">Release Year:</span> ${model.displayDate}</div>
                 <div class="tooltip-row"><span class="tooltip-label">Type:</span> ${typeLabel}</div>
             `;
             
