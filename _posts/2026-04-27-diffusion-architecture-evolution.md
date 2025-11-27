@@ -506,4 +506,4 @@ Diffusion models and autoregressive (AR) models represent two fundamentally diff
 
 ---
 
-**Note:** This blog post's knowledge cutoff is November 17, 2025. For the latest developments in pixel-space diffusion models, we refer readers to recent works including DiP <d-cite key="chenDiPTamingDiffusion2025"></d-cite>, DeCo <d-cite key="maDeCoFrequencyDecoupledPixel2025"></d-cite>, and PixelDiT <d-cite key="yuPixelDiTPixelDiffusion2025"></d-cite>.
+**Note:** This blog post's knowledge cutoff is November 17, 2025. For the latest developments, we refer readers to recent works including DiP <d-cite key="chenDiPTamingDiffusion2025"></d-cite>, DeCo <d-cite key="maDeCoFrequencyDecoupledPixel2025"></d-cite>, PixelDiT <d-cite key="yuPixelDiTPixelDiffusion2025"></d-cite>, Z-Image <d-cite key="z-image-2025"></d-cite>, and FLUX.2 <d-cite key="flux-2-2025"></d-cite>.
