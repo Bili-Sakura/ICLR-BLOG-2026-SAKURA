@@ -358,15 +358,15 @@ ninja.data = [{
             window.location.href = "/2026/blog/2026/diffusion-inverse-problems/";
           
         },
-      },{id: "post-chunktabpfn-training-free-long-context",
+      },{id: "post-from-u-nets-to-dits-the-architectural-evolution-of-text-to-image-diffusion-models-2021-2025",
         
-          title: "ChunkTabPFN: Training-free Long Context",
+          title: "From U-Nets to DiTs: The Architectural Evolution of Text-to-Image Diffusion Models (2021–2025)",
         
-        description: "Tabular foundation models struggle with large datasets due to the quadratic attention. While methods like FlashAttention promise scalability, practical challenges persist in their application to tabular foundation models. Our work resolves these hurdles, enabling efficient attention, and reveals that contrary to the eariler reports, TabPFN&#39;s performance improves with larger contexts, highlighting its inherent robustness and minimal fine-tuning needs when scaling to complex, long datasets from the TabArena benchmark.",
+        description: "A comprehensive analysis of how diffusion model architectures evolved from U-Net backbones to Diffusion Transformers, transforming text-to-image generation capabilities.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/2026/blog/2026/chunked-tabpfn/";
+            window.location.href = "/2026/blog/2026/diffusion-architecture-evolution/";
           
         },
       },{id: "post-budget-alignment-making-models-reason-in-the-user-39-s-language",
