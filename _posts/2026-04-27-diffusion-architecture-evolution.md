@@ -6,9 +6,13 @@ date: 2026-04-27
 future: true
 htmlwidgets: true
 
-# Anonymize when submitting
 authors:
-  - name: Anonymous
+  - name: Zhenyuan Chen
+    affiliation: Zhejiang University
+  - name: Zechuan Zhang
+    affiliation: Zhejiang University
+  - name: Feng Zhang
+    affiliation: Zhejiang University
 
 # must be the exact same name as your blogpost bibliography file
 bibliography: 2026-04-27-diffusion-architecture-evolution.bib
