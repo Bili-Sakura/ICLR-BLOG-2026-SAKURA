@@ -90,6 +90,26 @@ toc:
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+.narrative-guideline {
+  border: 2px solid #2196f3;
+  background-color: #e3f2fd;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+[data-theme="dark"] .narrative-guideline {
+  color: black !important;
+}
+
+[data-theme="dark"] .narrative-guideline strong {
+  color: black !important;
+}
+
+[data-theme="dark"] .narrative-guideline li {
+  color: black !important;
+}
 </style>
 
 <div class="l-page">
@@ -108,7 +128,7 @@ As diffusion systems scale, the biggest wins tend to come from leveraging comput
 
 ## Preliminaries: Diffusion Models for Image Generation
 
-Diffusion models have emerged as a powerful paradigm for generative modeling by learning to reverse a gradual noise corruption process. The fundamental approach involves two key stages: a **forward diffusion process** that systematically adds noise to data until it becomes pure Gaussian noise, and a **reverse denoising process** where a neural network gradually removes this noise to generate new samples.
+Diffusion models have emerged as a powerful paradigm for generative modeling by learning to reverse a gradual noise corruption process <d-cite key="sohl2015deep"></d-cite><d-cite key="song2019generative"></d-cite><d-cite key="hoDenoisingDiffusionProbabilistic2020"></d-cite>. The fundamental approach involves two key stages: a **forward diffusion process** that systematically adds noise to data until it becomes pure Gaussian noise, and a **reverse denoising process** where a neural network gradually removes this noise to generate new samples.
 
 This framework has demonstrated remarkable success across diverse domains including image generation, audio synthesis, video generation, and even applications in natural language processing and molecular design. The generality of the diffusion framework makes it particularly attractive for complex generative tasks.
 
@@ -202,6 +222,16 @@ The landscape of pre-trained text-to-image models has evolved dramatically since
   });
 </script>
 
+<div class="narrative-guideline">
+<strong>High-Level Narrative: Why the Shift in Architecture?</strong>
+<ul>
+<li><strong>Scaling with Data and Compute:</strong> As datasets and computational budgets grew, the community sought architectures that could scale effectively. While U-Nets served as the initial workhorse, they faced limitations in scalability compared to <strong>Transformer-based architectures</strong> (e.g., DiTs), which have now become the mainstream for foundation models in visual generation.</li>
+<li><strong>Model Size vs. Performance:</strong> Increased model size does not always guarantee better results. We observe a trend where relatively smaller, more efficient models often outperform larger ones through better data curation and training procedures.</li>
+<li><strong>Compression is Intelligence:</strong> The core idea of generative foundation models is effective compression. Simply scaling up without properly addressing data quality and training dynamics often leads to under-coverage or sub-optimal convergence.</li>
+<li><strong>Distillation and Efficiency:</strong> Techniques like knowledge distillation are increasingly critical for maintaining performance while reducing the computational footprint of these models.</li>
+</ul>
+</div>
+
 ### U-Net Family
 
 **Stable Diffusion** <d-cite key="rombachHighResolutionImageSynthesis2022"></d-cite> represents the pioneering work in latent diffusion models, adopting a U-Net architecture that operates in a compressed latent space rather than pixel space. This design choice dramatically reduces computational costs while maintaining high-quality generation capabilities. The model combines two key components: a pre-trained variational autoencoder (VAE) for efficient image compression and decompression, and a diffusion model that performs the denoising process in this latent space.<d-footnote>In the prioring work of LDM in the paper <d-cite key="rombachHighResolutionImageSynthesis2022"></d-cite>, the VAE part is adopted a VQ-GAN style from <d-cite key="esserTamingTransformersHighResolution2021"></d-cite>. When it comes to CompVis Stable Diffusion v1.1-v.1.4 and StabilityAI Stable Diffusion v1.5 and v2.x version, the VAE part is turned to AutoEncoderKL style rather than a VQ style.</d-footnote>
@@ -239,6 +269,9 @@ Architecturally, PixArt-$\alpha$ is a latent Diffusion Transformer (DiT): VAE la
 
 
 
+<details>
+<summary><b>Lumina-T2I (2024/04/01)</b></summary>
+
 ### Lumina-T2I (2024/04/01)
 
 Lumina-T2I is the first entry in the Lumina series from Shanghai AI Lab, aiming for a simple, scalable framework that supports flexible resolutions while maintaining photorealism. Building on the Sora insight that scaling Diffusion Transformers enables generation across arbitrary aspect ratios and durations yet lacks concrete implementation details, Lumina-T2I adopts flow matching to stabilize and accelerate training <d-cite key="gaoLuminaT2XScalableFlowbased2025a"></d-cite>.
@@ -255,6 +288,10 @@ Architecturally, Lumina-T2I uses a Flow-based Large Diffusion Transformer (Flag-
 <li>PixArt-α uses absolute positional embeddings limited to the initial layer, degrading at out-of-distribution scales</li>
 </ul>
 </div>
+</details>
+
+<details>
+<summary><b>Lumina-Next-T2I (2024/05/12)</b></summary>
 
 ### Lumina-Next-T2I (2024/05/12)
 
@@ -273,6 +310,7 @@ Architecturally, Lumina-Next introduces the Next-DiT backbone with 3D RoPE and F
 <li>Decoder-only LLM text encoders (Gemma-2B by default; Qwen-1.8B/InternLM-7B optional) boost zero-shot multilingual alignment vs CLIP/T5</li>
 </ul>
 </div>
+</details>
 
 ### Stable Diffusion 3 (2024/06/12)
 
@@ -312,6 +350,9 @@ Architecturally, Flux.1-Dev advances beyond SD3's MMDiT by implementing a hybrid
 </ul>
 </div>
 
+<details>
+<summary><b>CogView3 & CogView3-Plus (2024/10/13)</b></summary>
+
 ### CogView3 & CogView3-Plus (2024/10/13)
 
 **CogView3** <d-cite key="zhengCogView3FinerFaster2024a"></d-cite> introduces a **relay diffusion approach** <d-cite key="tengRelayDiffusionUnifying2024"></d-cite> that generates low-resolution images first, then refines them through super-resolution to achieve 2048×2048 outputs. This multi-stage process reduces computational costs while improving quality—CogView3 outperformed SDXL by 77% in human evaluations while using only one-tenth the inference time. The model employs a text-expansion language model to rewrite user prompts, with a base stage generating 512×512 images followed by relaying super-resolution in the latent space.
@@ -319,6 +360,10 @@ Architecturally, Flux.1-Dev advances beyond SD3's MMDiT by implementing a hybrid
 {% include figure.liquid path="assets/img/2026-04-27-diffusion-architecture-evolution/cogview3.png" alt="CogView3 Architecture." caption='(left) The pipeline of CogView3. User prompts are rewritten by a text-expansion language model. The base stage model generates 512 × 512 images, and the second stage subsequently performs relaying super-resolution. (right) Formulation of relaying super-resolution in the latent space. Image Credit: <d-cite key="zhengCogView3FinerFaster2024a"></d-cite>.' %}
 
 **CogView3-Plus** upgrades to DiT architecture with Zero-SNR scheduling and joint text-image attention for further efficiency gains. This architectural evolution represents a significant step in the CogView series, transitioning from traditional approaches to transformer-based diffusion models while maintaining the efficiency advantages of the relay diffusion framework.
+</details>
+
+<details>
+<summary><b>Hunyuan-DiT (2024/12/01)</b></summary>
 
 ### Hunyuan-DiT (2024/12/01)
 
@@ -337,6 +382,7 @@ Architecturally, Hunyuan-DiT builds upon PixArt-$\alpha$ by incorporating both s
 <li>Multimodal LLM-refined captions with fine-grained bilingual (English + Chinese) understanding</li>
 </ul>
 </div>
+</details>
 
 ### SANA (2025/01/11)
 
@@ -410,11 +456,15 @@ Architecturally, HiDream-I1 advances beyond Flux.1-Dev and Qwen-Image by impleme
 </ul>
 </div>
 
+<details>
+<summary><b>CogView4-6B (2025/05/03)</b></summary>
+
 ### CogView4-6B (2025/05/03)
 
 **CogView4-6B** <d-cite key="zhengCogView3FinerFaster2024a"></d-cite> represents the latest advancement in the CogView series, featuring a sophisticated **CogView4Transformer2DModel** architecture that excels in Chinese text rendering and multilingual image generation. The model demonstrates exceptional performance in text accuracy evaluation, achieving precision of 0.6969, recall of 0.5532, and F1 score of 0.6168 on Chinese text benchmarks.
 
 CogView4-6B leverages GLM-based text encoding and advanced transformer blocks with RoPE (Rotary Position Embedding) for enhanced spatial understanding and text-image alignment. This architectural sophistication enables the model to achieve superior text rendering capabilities, particularly for complex Chinese characters and multilingual content, setting new standards for text-to-image generation in non-Latin scripts. Available on [Hugging Face](https://huggingface.co/zai-org/CogView4-6B) under Apache 2.0 license.
+</details>
 
 ### Qwen-Image (2025/08/04)
 
@@ -468,9 +518,9 @@ To comprehensively evaluate the capabilities of different text-to-image diffusio
 <ul>
 <li>There is no strong correlation between image model size and image aesthetics (See case study 4).</li>
 <li>There is no strong correlation between text model size and prompt following (See case study 5).</li>
-<li>Large models generally work better but always the case.</li>
+<li>Large models generally work better but not always the case.</li>
 <li>U-Nets based model perform comparativaly worse than DiTs in the similar model size, for instance, SDXL to SANA, Kandinsky-3 to CogView4.</li>
-<li>StaleDiffusion 3.x continously trained on higher resolution (e.g., 1024px) tends to generate croped results.</li>
+<li>StableDiffusion 3.x continuously trained on higher resolution (e.g., 1024px) tends to generate cropped results.</li>
 <li>Not all models are capable to dealing with multilingual prompt (see case study 2).</li>
 <li>Commercial model such as GPT-Image model works extremely well in aesthetics, prompt following, counting, text rendering and spatial reasoning.</li>
 
