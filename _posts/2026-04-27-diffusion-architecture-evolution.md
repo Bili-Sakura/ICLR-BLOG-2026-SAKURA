@@ -8,11 +8,11 @@ htmlwidgets: true
 
 authors:
   - name: Zhenyuan Chen
-    affiliation: Zhejiang University
+    affiliations: Zhejiang University
   - name: Zechuan Zhang
-    affiliation: Zhejiang University
+    affiliations: Zhejiang University
   - name: Feng Zhang
-    affiliation: Zhejiang University
+    affiliations: Zhejiang University
 
 # must be the exact same name as your blogpost bibliography file
 bibliography: 2026-04-27-diffusion-architecture-evolution.bib
