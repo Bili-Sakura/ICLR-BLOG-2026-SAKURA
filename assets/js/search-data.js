@@ -105,17 +105,6 @@ ninja.data = [{
             window.location.href = "/2026/blog/2026/unigramlm-manual/";
           
         },
-      },{id: "post-model-misspecification-in-simulation-based-inference-recent-advances-and-open-challenges",
-        
-          title: "Model Misspecification in Simulation-Based Inference - Recent Advances and Open Challenges",
-        
-        description: "Model misspecification is a critical challenge in simulation-based inference (SBI), particularly in neural SBI methods that use simulated data to train flexible neural density estimators. These methods typically assume that simulators faithfully represent the true data-generating process, an assumption that is often violated in practice. Resulting discrepancies can make observed data effectively out-of-distribution relative to the simulations, leading to biased posterior distributions and misleading uncertainty quantification. This post reviews recent work on model misspecification in neural SBI, covering formal definitions, methods for detection and mitigation, and their underlying assumptions. It also discusses practical implications for SBI workflows and outlines open challenges for developing robust SBI methods that remain reliable in realistic, imperfectly specified applications.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/2026/blog/2026/model-misspecification-in-sbi/";
-          
-        },
       },{id: "post-ready-for-general-agents-let-39-s-test-it",
         
           title: "Ready For General Agents? Let&#39;s Test It.",
@@ -136,17 +125,6 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/2026/blog/2026/genai-archaeology/";
-          
-        },
-      },{id: "post-dllm-rethinking-generation-beyond-autoregressive-models",
-        
-          title: "dLLM - Rethinking Generation Beyond Autoregressive Models",
-        
-        description: "Diffusion large language models (dLLMs) provide an alternative to autoregressive Transformers, supporting parallel token generation and flexible infilling. They excel in structured, long-horizon, or data-constrained settings, though challenges remain with output length, denoising, and blockwise generation. Hybrid approaches combining diffusion for reasoning and autoregressive for generation show promise.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/2026/blog/2026/dllm/";
           
         },
       },{id: "post-sample-blog-post",
@@ -180,17 +158,6 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/2026/blog/2026/diffusion-architecture-evolution/";
-          
-        },
-      },{id: "post-the-adversarial-conditioning-paradox-how-fine-tuning-creates-a-geometric-signature-that-attacks-unknowingly-exploit",
-        
-          title: "The Adversarial Conditioning Paradox: How Fine-Tuning Creates a Geometric Signature That Attacks Unknowingly...",
-        
-        description: "Adversarial attacks optimized purely against the softmax output reliably land in geometrically ill-conditioned regions at Layer 12 of fine-tuned BERT — a signature that does not exist before task training. We validate this finding across three attack families (TextFooler, PWWS, DeepWordBug) at N=1,000 each.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/2026/blog/2026/adversarial-conditioning-paradox/";
           
         },
       },{id: "books-the-godfather",
